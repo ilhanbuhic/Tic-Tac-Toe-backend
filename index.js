@@ -3,6 +3,9 @@ const mongoose = require("mongoose")
 const Picture = require("./models/pictureSchema")
 const multer = require("multer")
 const cors = require("cors")
+const dotenv = require("dotenv")
+
+dotenv.config()
 
 const app = express()
 const port = process.env.PORT || 3000
