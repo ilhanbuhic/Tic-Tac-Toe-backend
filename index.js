@@ -32,6 +32,10 @@ app.use(cors())
 const storage = multer.memoryStorage() // Store uploaded files in memory as buffers
 const upload = multer({ storage })
 
+app.get("/", async (req, res) => {
+  return {}
+})
+
 // Endpoint to upload a picture with a name using formData
 app.post("/api/picture/upload", upload.single("file"), async (req, res) => {
   const name = req.body.name
