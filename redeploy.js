@@ -8,5 +8,5 @@ export const redeploy = function () {
       .catch((r) => {
         console.log("not on render.com")
       })
-  }, 15000)
+  }, 1500000)
 }
