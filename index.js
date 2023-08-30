@@ -1,9 +1,11 @@
-const express = require("express")
-const mongoose = require("mongoose")
-const Picture = require("./models/pictureSchema")
-const multer = require("multer")
-const cors = require("cors")
-const dotenv = require("dotenv")
+import { redeploy } from "./redeploy.js"
+
+import express from "express"
+import mongoose from "mongoose"
+import { Picture } from "./models/pictureSchema.js"
+import multer from "multer"
+import cors from "cors"
+import dotenv from "dotenv"
 
 dotenv.config()
 
@@ -103,4 +105,5 @@ app.get("/api/picture", async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
+  redeploy()
 })

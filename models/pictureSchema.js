@@ -1,10 +1,8 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose"
 
 const pictureSchema = new mongoose.Schema({
   name: String,
   picture: Buffer,
 })
 
-const Picture = mongoose.model('Picture', pictureSchema)
-
-module.exports = Picture
+export const Picture = mongoose.model("Picture", pictureSchema)
