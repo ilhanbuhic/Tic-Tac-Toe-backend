@@ -1,5 +1,3 @@
-import { redeploy } from "./redeploy.js"
-
 import express from "express"
 import mongoose from "mongoose"
 import { Picture } from "./models/pictureSchema.js"
@@ -109,5 +107,4 @@ app.get("/api/picture", async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
-  redeploy()
 })
