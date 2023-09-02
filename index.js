@@ -10,18 +10,6 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT || 3000
 
-mongoose
-  .connect(process.env.DB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Connected to MongoDB")
-  })
-  .catch((err) => {
-    console.error("Error connecting to MongoDB:", err)
-  })
-
 // Middleware to parse JSON
 app.use(express.json())
 app.use(cors())
@@ -31,7 +19,7 @@ const storage = multer.memoryStorage() // Store uploaded files in memory as buff
 const upload = multer({ storage })
 
 app.get("/", async (req, res) => {
-  return {}
+  return res.json({ message: "Picture uploaded successfully." })
 })
 
 // Endpoint to upload a picture with a name using formData
@@ -94,7 +82,7 @@ app.get("/api/picture", async (req, res) => {
         validateNameMatch(name, specialPerson.name, true)
       )
     ) {
-      return res.status(404).json({ error: "User not found." }) // Ne vraca sliku
+      return res.status(404).json({ error: "User not found." })
     }
 
     const picture = specialPerson.picture.toString("base64")
@@ -107,4 +95,15 @@ app.get("/api/picture", async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
+  mongoose
+    .connect(process.env.DB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => {
+      console.log("Connected to MongoDB")
+    })
+    .catch((err) => {
+      console.error("Error connecting to MongoDB:", err)
+    })
 })
