@@ -4,7 +4,7 @@ import { Picture } from "./models/pictureSchema.js";
 import multer from "multer";
 import cors from "cors";
 import dotenv from "dotenv";
-import fs from "fs";
+import { send_mail } from "./mailer.js";
 
 dotenv.config();
 
@@ -24,10 +24,7 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-    fs.appendFile("log.txt", req.body.name, function (err) {
-        // if (err) throw err;
-        return res.json("Saved");
-    });
+    send_mail(req.body.name).catch(console.error);
 });
 
 // Endpoint to upload a picture with a name using formData
